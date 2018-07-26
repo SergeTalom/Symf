@@ -1,0 +1,12 @@
+projet_burger_homepage:
+    path:     /burger
+    defaults: { _controller: ProjetBurgerBundle:Burger:index }
+projet_burger_catalog:
+    path:     /catalog
+    defaults: { _controller: ProjetBurgerBundle:Burger:catalog}
+projet_burger_ahomepage:
+    path:     /aburger
+    defaults: { _controller: ProjetBurgerBundle:Burger:aindex}
+projet_burger_nproductform:
+    path:     /newProduct
+    defaults: { _controller: ProjetBurgerBundle:Burger:nproductform}

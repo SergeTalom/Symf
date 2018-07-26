@@ -1,0 +1,13 @@
+{% extends "ProjetBurgerBundle::alayout.html.twig" %}
+{% block title %}
+    Homepage-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <h1>Welcome to Administrator side of GoodBruger WebSite</h1>
+    <h2>Here will be displayed some statistics like </h2>
+    <ul>
+        <li>Sold products for (at least) the last week</li>
+        <li>Products selling distribution by type (meat/vegetables/cheese/...)</li>
+        <li>Number of user accounts for (at least) the last month</li>
+    </ul>
+{% endblock %}

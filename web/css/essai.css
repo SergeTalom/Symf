@@ -1,0 +1,31 @@
+
+#header
+{
+    background-image: url("../img/b1.jpg");
+    background-size: cover;
+    height: 250px;
+    width: 97.75%;
+    padding-right: 5px;
+}
+
+#carous
+{
+    height: 25%;
+    padding-left: 20%;
+    padding-top: 10px;
+    width: 100%;
+    background-size: cover;
+}
+
+#menu
+{
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 25px;
+}
+
+#content
+{
+    width: 97.75%;
+    padding-right: 5px;
+}

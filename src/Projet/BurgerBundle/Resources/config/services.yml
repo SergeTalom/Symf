@@ -1,0 +1,4 @@
+services:
+#    projet_burger.example:
+#        class: Projet\BurgerBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
