@@ -7,10 +7,11 @@
     <div class="row">
         {% for prod in product %}
             <div class="col-md-3">
-                <img src="{{ asset(prod.image_url) }}" alt="{{ prod.description }}">
+                <img src="{{ asset(prod.imageUrl) }}" alt="{{ prod.description }}">
                 <div class="carousel-caption d-none d-md-block">
                     <a href="#">{{ prod.name }}</a>
                 </div>
             </div>
+        {% endfor %}
     </div>
 {% endblock %}

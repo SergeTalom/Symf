@@ -25,14 +25,15 @@ class BurgerController extends Controller
         $rep=$em->getRepository(Product::class);
         $list_product=$rep->findAll();
         $product=array();
-        /**
-         * @var $prod Product
-         */
+
+        /** @var Product $prod */
         foreach ($list_product as $prod)
         {
             if($prod->getIdState()->getIdState() != 2)
             {
-                $product +=$prod;
+               // $product +=$prod; //pas comme ça
+                $product[] =$prod; //plutôt
+
             }
         }
         return $this->render('ProjetBurgerBundle:Burger:index.html.twig', array('product' => $product));
