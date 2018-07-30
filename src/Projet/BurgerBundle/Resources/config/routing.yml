@@ -1,3 +1,6 @@
+projet_burger_start:
+    path:     /
+    defaults: { _controller: ProjetBurgerBundle:Burger:index }
 projet_burger_homepage:
     path:     /burger
     defaults: { _controller: ProjetBurgerBundle:Burger:index }
