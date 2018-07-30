@@ -5,8 +5,12 @@
 {% block goodburger_body %}
     <h1>Welcome to GoodBurger</h1>
     <div class="row">
-        <div class="col-md-3">
-
-        </div>
+        {% for prod in product %}
+            <div class="col-md-3">
+                <img src="{{ asset(prod.image_url) }}" alt="{{ prod.description }}">
+                <div class="carousel-caption d-none d-md-block">
+                    <a href="#">{{ prod.name }}</a>
+                </div>
+            </div>
     </div>
 {% endblock %}
