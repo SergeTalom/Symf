@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90fbf915-66e8-4285-8fa9-c79f13970df7" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +50,8 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="19" selection-start-column="19" selection-end-column="19" />
+            <state relative-caret-position="238">
+              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -156,8 +154,8 @@
         <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/web/css/essai.css" />
         <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/nproductform.html.twig" />
-        <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" />
+        <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" />
       </list>
     </option>
   </component>
@@ -367,16 +365,15 @@
       <workItem from="1532276315180" duration="9799000" />
       <workItem from="1532346473311" duration="6791000" />
       <workItem from="1532398023121" duration="20271000" />
-      <workItem from="1532830508847" duration="2390000" />
+      <workItem from="1532830508847" duration="3608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60497000" />
+    <option name="totallyTimeSpent" value="61715000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24304539" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -709,8 +706,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        <state relative-caret-position="238">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
         </state>
       </provider>
     </entry>
