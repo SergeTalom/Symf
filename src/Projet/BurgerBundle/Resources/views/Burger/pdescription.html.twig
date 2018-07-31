@@ -1,0 +1,27 @@
+{% extends "ProjetBurgerBundle::layout.html.twig" %}
+{% block title %}
+    Description-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <br><br>
+    <hr>
+    <center>
+        <div>
+            <img src="{{ asset(prod.getImageUrl()) }}" alt="">
+        </div>
+    </center>
+    <br>
+    <hr>
+    <h2>Description du {{ prod.getName() }}</h2>
+    <p>
+        <b><strong>{{ prod.getName() }} is a burger of type {{ prod.getIdType().getType() }}</strong></b>
+        <br>{{ prod.getDescription() }}
+    </p>
+    <hr>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <h2>Stock</h2>
+    <p>
+        This product is now available in our GoodBurger and we have up to {{ prod.getQuantity() }} then you can add it in your cart and checkout after
+    </p>
+
+{% endblock %}

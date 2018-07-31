@@ -25,18 +25,21 @@ class BurgerController extends Controller
         $rep=$em->getRepository(Product::class);
         $list_product=$rep->findAll();
         $product=array();
+        $i=0;
 
         /** @var Product $prod */
         foreach ($list_product as $prod)
         {
             if($prod->getIdState()->getIdState() != 2)
             {
-               // $product +=$prod; //pas comme ça
                 $product[] =$prod; //plutôt
+                $i +=1;
 
             }
         }
-        return $this->render('ProjetBurgerBundle:Burger:index.html.twig', array('product' => $product));
+
+        $mod=$i/3;
+        return $this->render('ProjetBurgerBundle:Burger:index.html.twig', array('product' => $product, 'line' => $mod));
     }
 
     public function aindexAction()
@@ -62,5 +65,10 @@ class BurgerController extends Controller
     public function nproductformAction()
     {
         return $this->render('ProjetBurgerBundle:Burger:nproductform.html.twig');
+    }
+
+    public function pdescriptionAction(Product $prod,$id)
+    {
+        return $this->render('ProjetBurgerBundle:Burger:pdescription.html.twig', array('prod' => $prod));
     }
 }

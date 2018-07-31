@@ -3,8 +3,6 @@
         <title>{% block title %} Burger {% endblock %}</title>
         {% block stylesheet %}
             <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.min.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/essai.css') }}">
         {% endblock %}
     </head>
@@ -20,7 +18,7 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="d-block w-60" src="{{ asset('img/b1.JPG') }}" alt="First slide" height="230px" width="75%">
+                                <img class="d-block w-60" src="{{ asset('img/b1.jpg') }}" alt="First slide" height="230px" width="75%">
                             </div>
                             <div class="carousel-item">
                                 <img class="d-block w-60" src="{{ asset('img/b2.jpg') }}" alt="Second slide" height="230px" width="75%">
