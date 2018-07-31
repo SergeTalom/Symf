@@ -1,3 +1,13 @@
+body
+{
+    font-family: "Comic Sans MS", Arial, "Arial Black", Verdana, Serif;
+    font-size: 1em;
+}
+
+p
+{
+    font-size: 1.2em;
+}
 
 #header
 {
@@ -28,4 +38,22 @@
 {
     width: 97.75%;
     padding-right: 5px;
+}
+
+.prod
+{
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.t
+{
+    margin-bottom: 0px;
+    margin-right: 20px;
+}
+
+#te
+{
+    padding-right: 20px;
+    background-color: white;
 }

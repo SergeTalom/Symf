@@ -13,3 +13,8 @@ projet_burger_ahomepage:
 projet_burger_nproductform:
     path:     /newProduct
     defaults: { _controller: ProjetBurgerBundle:Burger:nproductform}
+projet_burger_pdescription:
+    path:     /description/{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:pdescription}
+    requirements:
+        id:   \d+

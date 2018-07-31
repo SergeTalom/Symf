@@ -3,15 +3,33 @@
     Homepage-{{ parent() }}
 {% endblock %}
 {% block goodburger_body %}
-    <h1>Welcome to GoodBurger</h1>
-    <div class="row">
-        {% for prod in product %}
-            <div class="col-md-3">
-                <img src="{{ asset(prod.imageUrl) }}" alt="{{ prod.description }}">
-                <div class="carousel-caption d-none d-md-block">
-                    <a href="#">{{ prod.name }}</a>
+    <br>
+    <h1>Welcome to The GoodBurger restaurant</h1><br>
+    <hr>
+    {% set k=0 %}
+    {% set m=0 %}
+    <div id="te">
+    {% for i in 1..line %}
+        <div class="row align-items-center prod" >
+            {% for j in 0..2 %}
+              <div class="col-md-4">
+                  <p class="text-center"><a href="{{ path('projet_burger_pdescription', {'id':product[k].getIdProduct()}) }}"><img src="{{ asset(product[k].getImageUrl()) }}" alt="{{ product[k].getDescription() }}" class="img-responsive center-block"></a></p>
+              </div>
+                {% set k =k+1 %}
+            {% endfor %}
+        </div>
+        <div class="row align-items-start t">
+            {% for j in 0..2 %}
+                <div class="col-md-4">
+                    <p class="text-center">
+                        <a href="#" class="btn btn-success">Add to your cart</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-primary" href="{{ path('projet_burger_pdescription', {'id':product[m].getIdProduct()}) }}">{{ product[m].getName() }}</a>
+                    </p>
                 </div>
-            </div>
-        {% endfor %}
+                {% set m=m+1 %}
+            {% endfor %}
+        </div>
+    {% endfor %}
     </div>
 {% endblock %}
