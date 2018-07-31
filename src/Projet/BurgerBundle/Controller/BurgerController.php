@@ -59,7 +59,21 @@ class BurgerController extends Controller
 
     public function catalogAction()
     {
-        return $this->render('ProjetBurgerBundle:Burger:index.html.twig');
+        $em=$this->getDoctrine()->getManager();
+        $rep=$em->getRepository(Product::class);
+        $list_product=$rep->findAll();
+        $product=array();
+        $i=0;
+
+        /** @var Product $prod */
+        foreach ($list_product as $prod)
+        {
+                $product[] =$prod;
+                $i +=1;
+        }
+
+        $mod=$i/3;
+        return $this->render('ProjetBurgerBundle:Burger:catalog.html.twig', array('product' => $product, 'line' => $mod));
     }
 
     public function nproductformAction()

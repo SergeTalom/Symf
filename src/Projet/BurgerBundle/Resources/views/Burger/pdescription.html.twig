@@ -21,7 +21,10 @@
     &nbsp;&nbsp;&nbsp;&nbsp;
     <h2>Stock</h2>
     <p>
-        This product is now available in our GoodBurger and we have up to {{ prod.getQuantity() }} then you can add it in your cart and checkout after
+        This product is actually {{ prod.getIdState().getState() }} in our GoodBurger;
+        {% if prod.getIdState().getIdState() != 2 %}
+            And we have up to {{ prod.getQuantity() }} then you can add it in your cart and checkout after
+        {% endif %}
     </p>
 
 {% endblock %}
