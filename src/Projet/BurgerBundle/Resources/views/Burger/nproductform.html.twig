@@ -4,7 +4,7 @@
 {% endblock %}
 {% block goodburger_body %}
     <!-- à modifier quand les repositories vt marcher vu qu'il faut ts prendre dans la bd-->
-    <br>
+    <!--<br>
     <hr>
     <h2> Form of adding new product</h2>
     <hr>
@@ -37,9 +37,15 @@
                 <option>Vegetable</option>
                 <option>Cheese</option>
             </select>
-        </div>
+        </div>-->
         <!-- l'état sera par defaut available-->
-        <button type="reset" class="btn btn-primary">Cancel</button>
+        <!--<button type="reset" class="btn btn-primary">Cancel</button>
         <button type="submit" class="btn btn-primary">Create Product</button>
-    </form>
+    </form>-->
+    <h3>Formulaire de Produit</h3>
+    <div class="well">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

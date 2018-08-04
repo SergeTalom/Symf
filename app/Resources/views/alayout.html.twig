@@ -40,7 +40,7 @@
     </div>
     <div class="row col-md-12" id="menu">
         <nav class="collapse navbar navbar-collapse navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ path('projet_burger_ahomepage') }}"><span class="glyphicon glyphicon-home"></span>GoodBurger</a>
+            <a class="navbar-brand" href="{{ path('projet_burger_nproductform') }}"><span class="glyphicon glyphicon-home"></span>GoodBurger</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -93,9 +93,11 @@
     </footer>
 </div>
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-dropdown.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-popover.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 {% endblock %}
 
 </body>

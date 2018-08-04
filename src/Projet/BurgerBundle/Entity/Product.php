@@ -86,6 +86,12 @@ class Product
      *
      * @param int $quantity
      */
+
+    public function __construct()
+    {
+        $this->dateCreation= new \DateTime();
+    }
+
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;

@@ -10,9 +10,16 @@ namespace Projet\BurgerBundle\Controller;
 
 
 use Projet\BurgerBundle\Entity\Product;
-use Projet\BurgerBundle\Entity\Test;
-use Projet\BurgerBundle\ProjetBurgerBundle;
+use Projet\BurgerBundle\Entity\State;
+use Projet\BurgerBundle\Entity\Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BurgerController extends Controller
 {
@@ -78,7 +85,20 @@ class BurgerController extends Controller
 
     public function nproductformAction()
     {
-        return $this->render('ProjetBurgerBundle:Burger:nproductform.html.twig');
+        $prod=new Product();
+        $formBuilder = $this->createFormBuilder($prod);
+        $formBuilder
+            ->add('name', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('price', TextType::class)
+            ->add('quantity', IntegerType::class)
+            ->add('dateCreation', DateType::class)
+            ->add('imageUrl', TextType::class)
+            ->add('save', SubmitType::class);
+          //  ->add('types',EntityType::class,array('class'=> 'ProjetBurgerBundle:State','choice_label'=>'state'))
+           // ->add('states',EntityType::class,array('class'=> 'ProjetBurgerBundle:Type','choice_label'=>'type'));
+        $form=$formBuilder->getForm();
+        return $this->render('ProjetBurgerBundle:Burger:nproductform.html.twig',array('form' => $form->createView()));
     }
 
     public function pdescriptionAction(Product $prod,$id)
