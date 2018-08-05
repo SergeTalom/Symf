@@ -44,7 +44,17 @@
     </form>-->
     <h3>Formulaire de Produit</h3>
     <div class="well">
-        {{ form_start(form) }}
+
+        {% if notification is defined %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Notification !</strong>   {{ notification }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        {# render the start tag and change the submission method #}
+        {{ form_start(form, {'method': 'POST', enctype:"multipart/form-data" }) }}
             {{ form_widget(form) }}
         {{ form_end(form) }}
     </div>

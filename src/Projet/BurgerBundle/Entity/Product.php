@@ -3,7 +3,7 @@
 namespace Projet\BurgerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Product
  *
@@ -70,7 +70,7 @@ class Product
      *   @ORM\JoinColumn(name="id_state", referencedColumnName="id_state")
      * })
      */
-    private $idState;
+    private $State;
 
     /**
      *
@@ -79,7 +79,7 @@ class Product
      *   @ORM\JoinColumn(name="id_type", referencedColumnName="id_type")
      * })
      */
-    private $idType;
+    private $Type;
 
     /**
      * Set quantity
@@ -137,25 +137,6 @@ class Product
         $this->imageUrl = $imageUrl;
     }
 
-    /**
-     * Set idState
-     *
-     * @param \Projet\BurgerBundle\Entity\State $idState
-     */
-    public function setIdState($idState)
-    {
-        $this->idState = $idState;
-    }
-
-    /**
-     * Set idType
-     *
-     * @param \Projet\BurgerBundle\Entity\Type $idType
-     */
-    public function setIdType($idType)
-    {
-        $this->idType = $idType;
-    }
 
     /**
      * Set name
@@ -217,25 +198,7 @@ class Product
         return $this->idProduct;
     }
 
-    /**
-     * Get idState
-     *
-     * @return \Projet\BurgerBundle\Entity\State
-     */
-    public function getIdState()
-    {
-        return $this->idState;
-    }
 
-    /**
-     * Get idType
-     *
-     * @return \Projet\BurgerBundle\Entity\Type
-     */
-    public function getIdType()
-    {
-        return $this->idType;
-    }
 
     /**
      * Get imageUrl
@@ -267,5 +230,76 @@ class Product
         return $this->price;
     }
 
+
+
+    /**
+     * Set state
+     *
+     * @param \Projet\BurgerBundle\Entity\State $state
+     *
+     * @return Product
+     */
+    public function setState(\Projet\BurgerBundle\Entity\State $state = null)
+    {
+        $this->State = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return \Projet\BurgerBundle\Entity\State
+     */
+    public function getState()
+    {
+        return $this->State;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \Projet\BurgerBundle\Entity\Type $type
+     *
+     * @return Product
+     */
+    public function setType(\Projet\BurgerBundle\Entity\Type $type = null)
+    {
+        $this->Type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Projet\BurgerBundle\Entity\Type
+     */
+    public function getType()
+    {
+        return $this->Type;
+    }
+
+
+
+
+
+
+
+
+
+    private $file;
+
+    public function setFile(UploadedFile $file)
+    {
+        $this->file= $file;
+
+        return $this;
+    }
+
+    public function getFile()
+    {
+        return  $this->file;
+    }
 
 }

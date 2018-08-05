@@ -70,7 +70,7 @@ class Product
      *   @ORM\JoinColumn(name="id_state", referencedColumnName="id_state")
      * })
      */
-    private $idState;
+    private $State;
 
     /**
      *
@@ -79,13 +79,19 @@ class Product
      *   @ORM\JoinColumn(name="id_type", referencedColumnName="id_type")
      * })
      */
-    private $idType;
+    private $Type;
 
     /**
      * Set quantity
      *
      * @param int $quantity
      */
+
+    public function __construct()
+    {
+        $this->dateCreation= new \DateTime();
+    }
+
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
@@ -131,25 +137,6 @@ class Product
         $this->imageUrl = $imageUrl;
     }
 
-    /**
-     * Set idState
-     *
-     * @param \Projet\BurgerBundle\Entity\State $idState
-     */
-    public function setIdState($idState)
-    {
-        $this->idState = $idState;
-    }
-
-    /**
-     * Set idType
-     *
-     * @param \Projet\BurgerBundle\Entity\Type $idType
-     */
-    public function setIdType($idType)
-    {
-        $this->idType = $idType;
-    }
 
     /**
      * Set name
@@ -211,25 +198,7 @@ class Product
         return $this->idProduct;
     }
 
-    /**
-     * Get idState
-     *
-     * @return \Projet\BurgerBundle\Entity\State
-     */
-    public function getIdState()
-    {
-        return $this->idState;
-    }
 
-    /**
-     * Get idType
-     *
-     * @return \Projet\BurgerBundle\Entity\Type
-     */
-    public function getIdType()
-    {
-        return $this->idType;
-    }
 
     /**
      * Get imageUrl
@@ -263,4 +232,3 @@ class Product
 
 
 }
-

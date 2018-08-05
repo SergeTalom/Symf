@@ -9,9 +9,11 @@
 namespace Projet\BurgerBundle\Controller;
 
 
+use Projet\BurgerBundle\Entity\Files;
 use Projet\BurgerBundle\Entity\Product;
 use Projet\BurgerBundle\Entity\State;
 use Projet\BurgerBundle\Entity\Type;
+use Projet\BurgerBundle\Form\ProductType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -20,6 +22,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 class BurgerController extends Controller
 {
@@ -37,7 +41,7 @@ class BurgerController extends Controller
         /** @var Product $prod */
         foreach ($list_product as $prod)
         {
-            if($prod->getIdState()->getIdState() != 2)
+            if($prod->getState()->getIdState() != 2)
             {
                 $product[] =$prod; //plutôt
                 $i +=1;
@@ -83,22 +87,47 @@ class BurgerController extends Controller
         return $this->render('ProjetBurgerBundle:Burger:catalog.html.twig', array('product' => $product, 'line' => $mod));
     }
 
-    public function nproductformAction()
+    public function nproductformAction(Request $request)
     {
         $prod=new Product();
-        $formBuilder = $this->createFormBuilder($prod);
-        $formBuilder
-            ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('price', TextType::class)
-            ->add('quantity', IntegerType::class)
-            ->add('dateCreation', DateType::class)
-            ->add('imageUrl', TextType::class)
-            ->add('save', SubmitType::class);
-          //  ->add('types',EntityType::class,array('class'=> 'ProjetBurgerBundle:State','choice_label'=>'state'))
-           // ->add('states',EntityType::class,array('class'=> 'ProjetBurgerBundle:Type','choice_label'=>'type'));
-        $form=$formBuilder->getForm();
-        return $this->render('ProjetBurgerBundle:Burger:nproductform.html.twig',array('form' => $form->createView()));
+
+        /** @var Form $form */
+        $form = $this->get("form.factory")->create(ProductType::class,$prod);
+
+        if($request->isMethod("POST"))
+        {
+
+            $form->handleRequest($request);
+
+            $prod->setDatecreation(new \DateTime());
+
+            //save picture
+            $file = new Files();
+
+            if ($prod->getFile() != null) {
+                $file->file = $prod->getFile();
+                $prod->setImageUrl("img/".$prod->getFile()->getClientOriginalName());
+                $file->add("", $prod->getImageUrl());
+            }
+
+            //save information in database
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($prod);
+                $em->flush();
+
+                //set notification
+                $datas["notification"] = "Save as successfull !";
+
+                //create product
+                $prod=new Product();
+                $form = $this->get("form.factory")->create(ProductType::class,$prod);
+            }
+
+
+        }
+        $datas["form"] =$form->createView();
+        return $this->render('ProjetBurgerBundle:Burger:nproductform.html.twig',$datas);
     }
 
     public function pdescriptionAction(Product $prod,$id)
