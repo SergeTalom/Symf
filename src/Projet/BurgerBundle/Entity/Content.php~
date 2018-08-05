@@ -57,52 +57,5 @@ class Content
     }
 
 
-
-    /**
-     * Set idProduct
-     *
-     * @param integer $idProduct
-     *
-     * @return Content
-     */
-    public function setIdProduct($idProduct)
-    {
-        $this->idProduct = $idProduct;
-
-        return $this;
-    }
-
-    /**
-     * Get idProduct
-     *
-     * @return integer
-     */
-    public function getIdProduct()
-    {
-        return $this->idProduct;
-    }
-
-    /**
-     * Set idCart
-     *
-     * @param \Projet\BurgerBundle\Entity\Cart $idCart
-     *
-     * @return Content
-     */
-    public function setIdCart(\Projet\BurgerBundle\Entity\Cart $idCart)
-    {
-        $this->idCart = $idCart;
-
-        return $this;
-    }
-
-    /**
-     * Get idCart
-     *
-     * @return \Projet\BurgerBundle\Entity\Cart
-     */
-    public function getIdCart()
-    {
-        return $this->idCart;
-    }
 }
+

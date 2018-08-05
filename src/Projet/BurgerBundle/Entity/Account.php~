@@ -71,28 +71,5 @@ class Account
     }
 
 
-
-    /**
-     * Set idUser
-     *
-     * @param \Projet\BurgerBundle\Entity\User $idUser
-     *
-     * @return Account
-     */
-    public function setIdUser(\Projet\BurgerBundle\Entity\User $idUser = null)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return \Projet\BurgerBundle\Entity\User
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 }
+
