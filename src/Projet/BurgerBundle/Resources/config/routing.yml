@@ -18,3 +18,6 @@ projet_burger_pdescription:
     defaults: { _controller: ProjetBurgerBundle:Burger:pdescription}
     requirements:
         id:   \d+
+projet_burger_ncityform:
+    path:     /newCity
+    defaults: { _controller: ProjetBurgerBundle:Burger:ncityform}

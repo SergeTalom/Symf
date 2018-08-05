@@ -77,7 +77,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add a new city</a>
+                        <a class="nav-link" href="{{ path('projet_burger_ncityform') }}">Add a new city</a>
                     </li>
                 </ul>
             </div>
@@ -93,11 +93,9 @@
     </footer>
 </div>
 {% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-dropdown.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-popover.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 {% endblock %}
 
 </body>

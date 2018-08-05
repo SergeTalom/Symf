@@ -9,6 +9,7 @@
 namespace Projet\BurgerBundle\Controller;
 
 
+use Projet\BurgerBundle\Entity\Goodburger;
 use Projet\BurgerBundle\Entity\Product;
 use Projet\BurgerBundle\Entity\State;
 use Projet\BurgerBundle\Entity\Type;
@@ -20,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 
 class BurgerController extends Controller
 {
@@ -104,5 +106,31 @@ class BurgerController extends Controller
     public function pdescriptionAction(Product $prod,$id)
     {
         return $this->render('ProjetBurgerBundle:Burger:pdescription.html.twig', array('prod' => $prod));
+    }
+
+    public function ncityformAction(Request $request)
+    {
+        $gb=new Goodburger();
+        $formbuilder= $this->createFormBuilder($gb);
+        $formbuilder
+            ->add('name', TextType::class)
+            ->add('location', TextType::class)
+            ->add('save', SubmitType::class);
+        $form=$formbuilder->getForm();
+
+        if ($request->isMethod('POST'))
+        {
+            $form->handleRequest($request);
+
+            if ($form->isValid())
+            {
+                $em=$this->getDoctrine()->getManager();
+                $em->persist($gb);
+                $em->flush();
+
+                return $this->redirectToRoute('projet_burger_ahomepage');
+            }
+        }
+        return $this->render('ProjetBurgerBundle:Burger:ncityform.html.twig',array('form' => $form->createView()));
     }
 }

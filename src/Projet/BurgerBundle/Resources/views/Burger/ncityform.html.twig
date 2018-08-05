@@ -3,10 +3,12 @@
     Add Product-{{ parent() }}
 {% endblock %}
 {% block goodburger_body %}
-    <h3>Formulaire de Produit</h3>
+    <h2>Add a new City for GoodBurger Restaurant</h2>
+    <hr>
+    <br>
     <div class="well">
         {{ form_start(form) }}
-            {{ form_widget(form) }}
+        {{ form_widget(form) }}
         {{ form_end(form) }}
     </div>
 {% endblock %}
