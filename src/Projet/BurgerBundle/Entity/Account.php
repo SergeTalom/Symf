@@ -29,7 +29,6 @@ class Account
     private $password;
 
     /**
-     * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -37,6 +36,15 @@ class Account
      * })
      */
     private $idUser;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="State")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_state", referencedColumnName="id_state")
+     * })
+     */
+    private $State;
 
     /**
      * @param string $login
@@ -94,5 +102,29 @@ class Account
     public function getIdUser()
     {
         return $this->idUser;
+    }
+
+    /**
+     * Set state
+     *
+     * @param \Projet\BurgerBundle\Entity\State $state
+     *
+     * @return Account
+     */
+    public function setState(\Projet\BurgerBundle\Entity\State $state = null)
+    {
+        $this->State = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return \Projet\BurgerBundle\Entity\State
+     */
+    public function getState()
+    {
+        return $this->State;
     }
 }

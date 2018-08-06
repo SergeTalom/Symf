@@ -40,7 +40,7 @@
     </div>
     <div class="row col-md-12" id="menu">
         <nav class="collapse navbar navbar-collapse navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ path('projet_burger_nproductform') }}"><span class="glyphicon glyphicon-home"></span>GoodBurger</a>
+            <a class="navbar-brand" href="{{ path('projet_burger_ahomepage') }}"><span class="glyphicon glyphicon-home"></span>GoodBurger</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -53,19 +53,14 @@
                         <span class="caret"></span>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <a class="dropdown-item" href="{{ path('projet_burger_nproductform') }}">Add a new product</a>
-                            <a class="dropdown-item" href="#">Edit product</a>
-                            <a class="dropdown-item" href="#">Delete product</a>
-                            <a class="dropdown-item" href="#">Change city of a product</a>
+                            <a class="dropdown-item" href="{{ path('projet_burger_eproduct') }}">Edit product</a>
+                            <a class="dropdown-item" href="{{ path('projet_burger_dproduct') }}">Delete product</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage Account
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('projet_burger_buaccount') }}">
+                            Block|Unlock an Account
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="#">Block an Account</a>
-                            <a class="dropdown-item" href="#">Unlock an Account</a>
-                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -1,0 +1,31 @@
+{% extends "ProjetBurgerBundle::alayout.html.twig" %}
+{% block title %}
+    Block or Unlock Product-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <h2>Change the status of an Account(Block or Un Block)</h2>
+    <hr>
+    {% if notification is defined %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Notification !</strong>   {{ notification }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% else %}
+        <p>If the Account is in block state, after the state will change in unblock while if the state is unblock the Account will be blocked</p>
+        <br>
+        <form action="{{ path('projet_burger_vbuaccount') }}" method="post">
+            <div class="form-group">
+                <label for="bu">Select the User of the Account</label>
+                <select class="form-control" id="bu" name="bu">
+                    {% for prod in account %}
+                        <option>{{ prod.getIdUser().getSurname() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Operate on that Account</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

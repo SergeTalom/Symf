@@ -2,6 +2,7 @@
 
 namespace Projet\BurgerBundle\Form;
 
+use Projet\BurgerBundle\Entity\Goodburger;
 use Projet\BurgerBundle\Entity\State;
 use Projet\BurgerBundle\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -28,7 +29,6 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('price', MoneyType::class)
             ->add('quantity', IntegerType::class)
-            ->add('dateCreation', DateType::class)
            // ->add('imageUrl', TextType::class)
             ->add('file',FileType::class, ['required' =>"true"])
             ->add('State',EntityType::class,array(
@@ -41,6 +41,13 @@ class ProductType extends AbstractType
             ->add('Type',EntityType::class,array(
                 'class'=>Type::class,
                 'choice_label'=>'type',
+                'required'=>true,
+                'multiple'=>false,
+                'empty_data'=>null
+            ))
+            ->add('location',EntityType::class,array(
+                'class'=>Goodburger::class,
+                'choice_label'=>'name',
                 'required'=>true,
                 'multiple'=>false,
                 'empty_data'=>null

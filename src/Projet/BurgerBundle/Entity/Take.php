@@ -13,16 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Take
 {
     /**
-     * @var integer
      *
-     * @ORM\Column(name="id_gb", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Goodburger")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_gb", referencedColumnName="id_gb")
+     * })
      */
     private $idGb;
 
     /**
-     * @var \Product
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -34,7 +35,7 @@ class Take
     private $idProduct;
 
     /**
-     * @return \Product
+     * @return \Projet\BurgerBundle\Entity\Product
      */
     public function getIdProduct()
     {
@@ -42,7 +43,7 @@ class Take
     }
 
     /**
-     * @param \Product $idProduct
+     * @param \Projet\BurgerBundle\Entity\Product $idProduct
      */
     public function setIdProduct($idProduct)
     {
@@ -50,7 +51,7 @@ class Take
     }
 
     /**
-     * @param int $idGb
+     * @param \Projet\BurgerBundle\Entity\Goodburger $idGb
      */
     public function setIdGb($idGb)
     {
@@ -58,7 +59,7 @@ class Take
     }
 
     /**
-     * @return int
+     * @return \Projet\BurgerBundle\Entity\Goodburger
      */
     public function getIdGb()
     {
