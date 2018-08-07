@@ -14,15 +14,15 @@
     <hr>
     <h2>Description du {{ prod.getName() }}</h2>
     <p>
-        <b><strong>{{ prod.getName() }} is a burger of type {{ prod.getIdType().getType() }}</strong></b>
+        <b><strong>{{ prod.getName() }} is a burger of type {{ prod.getType().getType() }}</strong></b>
         <br>{{ prod.getDescription() }}
     </p>
     <hr>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <h2>Stock</h2>
     <p>
-        This product is actually {{ prod.getIdState().getState() }} in our GoodBurger;
-        {% if prod.getIdState().getIdState() != 2 %}
+        This product is actually {{ prod.getState().getState() }} in our GoodBurger;
+        {% if prod.getState().getIdState() != 2 %}
             And we have up to {{ prod.getQuantity() }} then you can add it in your cart and checkout after
         {% endif %}
     </p>

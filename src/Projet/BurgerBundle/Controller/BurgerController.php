@@ -127,16 +127,20 @@ class BurgerController extends Controller
                 $file->add("", $prod->getImageUrl());
             }
 
+            $reps=$em->getRepository(Take::class);
             /**
              * @var Take $con
              */
-            $con=new Take();
-            $con->setIdGb($prod->getlocation());
-            $con->setIdProduct($prod);
+            $con=$reps->findOneBy(array('idGb'=>$prod->getlocation(),'idProduct'=>$prod));
 
             //save information in database
             if($form->isValid()){
-                $em->persist($con);
+                if($con==null)
+                {
+                    $con->setIdGb($prod->getlocation());
+                    $con->setIdProduct($prod);
+                    $em->persist($con);
+                }
                 $em->persist($prod);
                 $em->flush();
 

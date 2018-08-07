@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="870d764c-fd2a-45d6-9c4a-80103ac46e62" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/buaccount.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/dproduct.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/eproduct.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/alayout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/alayout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Take.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Take.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Form/ProductType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/ncityform.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/ncityform.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/pdescription.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/pdescription.html.twig" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -62,20 +57,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="alayout.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/alayout.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="56" column="115" selection-start-line="56" selection-start-column="115" selection-end-line="56" selection-end-column="115" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Product.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -88,7 +74,7 @@
       <file leaf-file-name="ProductType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Form/ProductType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
+            <state relative-caret-position="578">
               <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
               <folding>
                 <element signature="e#44#86#0#PHP" expanded="true" />
@@ -100,8 +86,8 @@
       <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="42" column="90" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="90" />
+            <state relative-caret-position="1479">
+              <caret line="87" column="91" selection-start-line="84" selection-start-column="12" selection-end-line="87" selection-end-column="91" />
             </state>
           </provider>
         </entry>
@@ -109,8 +95,8 @@
       <file leaf-file-name="BurgerController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="319" column="19" selection-start-line="319" selection-start-column="19" selection-end-line="319" selection-end-column="19" />
+            <state relative-caret-position="1989">
+              <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
               <folding>
                 <element signature="e#132#171#0#PHP" expanded="true" />
               </folding>
@@ -118,11 +104,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="pdescription.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/pdescription.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
+            <state relative-caret-position="714">
               <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="530">
+              <caret line="48" column="87" selection-start-line="48" selection-start-column="87" selection-end-line="48" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -144,8 +148,11 @@
         <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Take.php" />
         <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/eproduct.html.twig" />
         <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/config/routing.yml" />
-        <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/alayout.html.twig" />
+        <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php" />
+        <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/pdescription.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/layout.html.twig" />
+        <option value="$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig" />
       </list>
     </option>
   </component>
@@ -214,7 +221,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -327,10 +333,17 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Symf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Symf" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,12 +377,13 @@
       <workItem from="1533196069841" duration="12592000" />
       <workItem from="1533308103123" duration="2814000" />
       <workItem from="1533460847410" duration="633000" />
-      <workItem from="1533463019025" duration="23662000" />
+      <workItem from="1533463019025" duration="29586000" />
+      <workItem from="1533665576309" duration="577000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23696000" />
+    <option name="totallyTimeSpent" value="30197000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -562,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/pdescription.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/catalog.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -610,20 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="28" lean-forward="true" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="42" column="90" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/buaccount.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -640,25 +633,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Form/ProductType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="578">
           <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
           <folding>
             <element signature="e#44#86#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Take.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5168">
-          <caret line="305" column="47" selection-start-line="305" selection-start-column="47" selection-end-line="305" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -671,7 +650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
+        <state relative-caret-position="714">
           <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
         </state>
       </provider>
@@ -683,20 +662,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Take.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/alayout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="58" column="64" selection-start-line="58" selection-start-column="64" selection-end-line="58" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Controller/BurgerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="319" column="19" selection-start-line="319" selection-start-column="19" selection-end-line="319" selection-end-column="19" />
+        <state relative-caret-position="1989">
+          <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
           <folding>
             <element signature="e#132#171#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/alayout.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Entity/Product.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="56" column="115" selection-start-line="56" selection-start-column="115" selection-end-line="56" selection-end-column="115" />
+        <state relative-caret-position="5168">
+          <caret line="305" column="47" selection-start-line="305" selection-start-column="47" selection-end-line="305" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/pdescription.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1479">
+          <caret line="87" column="91" selection-start-line="84" selection-start-column="12" selection-end-line="87" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Projet/BurgerBundle/Resources/views/Burger/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="48" column="87" selection-start-line="48" selection-start-column="87" selection-end-line="48" selection-end-column="87" />
         </state>
       </provider>
     </entry>

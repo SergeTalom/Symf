@@ -3,6 +3,7 @@
     <title>{% block title %} Burger {% endblock %}</title>
     {% block stylesheet %}
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('js/bootstrap-dropdown.js') }}" media="screen">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/essai.css') }}">
     {% endblock %}
 </head>
@@ -53,7 +54,9 @@
                         <span class="caret"></span>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <a class="dropdown-item" href="{{ path('projet_burger_nproductform') }}">Add a new product</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('projet_burger_eproduct') }}">Edit product</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ path('projet_burger_dproduct') }}">Delete product</a>
                         </div>
                     </li>
@@ -68,6 +71,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="#">Add an Administrator</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Remove an Administrator</a>
                         </div>
                     </li>
@@ -89,8 +93,8 @@
 </div>
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}
 
 </body>

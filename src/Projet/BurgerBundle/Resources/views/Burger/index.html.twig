@@ -17,10 +17,11 @@
                       <div class="card-header text-center">
                           <a href="{{ path('projet_burger_pdescription', {'id':product[k].getIdProduct()}) }}">
                               <img style="height:200px; max-height: 200px; max-width: 100%;"  src="{{ asset(product[k].getImageUrl()) }}" alt="{{ product[k].getDescription() }}" class="img-responsive center-block">
-                          </a>
+                          </a><br>
+                          <p>{{ product[k].getPrice() }}$</p>
                       </div>
                       <div class="card-body text-center">
-                          <a href="#" class="btn btn-success btn-sm mr-5">Add to your cart</a>
+                          <a href="#" class="btn btn-success btn-sm mr-5 tes" id="tes">Add to your cart</a>
                           <a class="btn btn-primary btn-sm " href="{{ path('projet_burger_pdescription', {'id':product[m].getIdProduct()}) }}">Detail</a>
                       </div>
                   </div>
@@ -30,4 +31,21 @@
         </div>
     {% endfor %}
     </div>
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script>
+            $('#tes').click(function (e) {
+                e.preventDefault();
+                bootbox.prompt({
+                    title: "Enter the quantity",
+                    inputType: "number",
+                    callback:   function (result) {
+                        console.log(result);
+                    }
+                })
+            });
+        </script>
+        <script type="text/javascript" src="{{ asset('js/bootbox.min.js') }}"></script>
+    {% endblock %}
 {% endblock %}
