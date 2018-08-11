@@ -1,0 +1,28 @@
+{% set k=0 %}
+    {% set m=0 %}
+    {% set u=0 %}
+<div id="te">
+    {% for i in 1..line %}
+        <div class="row align-items-center prod" >
+            {% for j in 0..2 %}
+                {% set u=m %}
+                <div class=" col-12 col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <a href="{{ path('projet_burger_pdescription', {'id':product[k].getIdProduct()}) }}">
+                                <img style="height:200px; max-height: 200px; max-width: 100%;"  src="{{ asset(product[k].getImageUrl()) }}" alt="{{ product[k].getDescription() }}" class="img-responsive center-block">
+                            </a><br>
+                            <p>{{ product[k].getPrice() }}$</p>
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="#" class="btn btn-success btn-sm mr-5 " id="tes" onclick="test({{ product[m].getIdProduct() }})">Add to your cart</a>
+                            <a class="btn btn-primary btn-sm" href="{{ path('projet_burger_pdescription', {'id':product[m].getIdProduct()}) }}">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                {% set k =k+1 %}
+                {% set m =m+1 %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Content
  *
  * @ORM\Table(name="content", indexes={@ORM\Index(name="FK_content", columns={"id_cart"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Projet\BurgerBundle\Repository\ContentRepository")
  */
 class Content
 {

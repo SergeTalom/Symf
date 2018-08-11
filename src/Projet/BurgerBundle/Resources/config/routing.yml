@@ -2,8 +2,10 @@ projet_burger_start:
     path:     /
     defaults: { _controller: ProjetBurgerBundle:Burger:index }
 projet_burger_homepage:
-    path:     /burger
-    defaults: { _controller: ProjetBurgerBundle:Burger:index }
+    path:     /burger/{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:index, id: 0 }
+    requirements:
+        id:   \d+
 projet_burger_catalog:
     path:     /catalog
     defaults: { _controller: ProjetBurgerBundle:Burger:catalog}
@@ -41,3 +43,15 @@ projet_burger_eproduct:
 projet_burger_veproduct:
     path:     /validateEditing
     defaults: {_controller: ProjetBurgerBundle:Burger:veproduct}
+projet_burger_valide:
+    path:     /valide
+    defaults: { _controller: ProjetBurgerBundle:Burger:valide}
+projet_burger_nuserform:
+    path:     /newUser
+    defaults: { _controller: ProjetBurgerBundle:Burger:nuser}
+projet_burger_usercon:
+    path:     /validateUser
+    defaults: { _controller: ProjetBurgerBundle:Burger:usercon}
+projet_burger_admincon:
+    path:     /validateAdmin
+    defaults: { _controller: ProjetBurgerBundle:Burger:admincon}
