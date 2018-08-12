@@ -26,5 +26,8 @@
             And we have up to {{ prod.getQuantity() }} then you can add it in your cart and checkout after
         {% endif %}
     </p>
+    {% block javasrcipts %}
+        {{ parent() }}
+    {% endblock %}
 
 {% endblock %}

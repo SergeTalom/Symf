@@ -22,7 +22,6 @@ class Cart
     private $idCart;
 
     /**
-     * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({

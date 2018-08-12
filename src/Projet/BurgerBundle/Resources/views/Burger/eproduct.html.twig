@@ -27,5 +27,8 @@
             <button type="submit" class="btn btn-primary">Modify It</button>
         </form>
     {% endif %}
+    {% block javasrcipts %}
+        {{ parent() }}
+    {% endblock %}
 
 {% endblock %}

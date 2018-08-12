@@ -16,16 +16,20 @@
                     title: "Enter the quantity",
                     inputType: 'number',
                     callback: function (result) {
-                        alert(result);
-                        let neSw = {"data": {"ne": y, "sw": result}};
                         $.ajax({
-                            url: "{{ path('projet_burger_valide') }}",
+                            url: "{{ (path('projet_burger_valide')) }}",
                             type: "POST",
-                            data: neSw
-                        });
+                            data: {"id": y, "qted": result}
+                        })
+                            .done(function (msg) {
+                                alert("ok");
+                                $('#tester').html(msg);
+                            })
+                            .fail(function () {
+                                alert("Echec");
+                            });
                     }
                 });
-                alert(y);
             }
         </script>
     {% endblock %}

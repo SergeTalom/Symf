@@ -54,7 +54,8 @@ class ProductType extends AbstractType
             ))
             ->add('save', SubmitType::class)
             ;
-    }/**
+    }
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

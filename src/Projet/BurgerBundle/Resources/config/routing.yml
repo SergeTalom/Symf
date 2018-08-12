@@ -1,9 +1,11 @@
 projet_burger_start:
-    path:     /
-    defaults: { _controller: ProjetBurgerBundle:Burger:index }
+    path:     /{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:initialize, id: 1 }
+    requirements:
+        id:   \d+
 projet_burger_homepage:
     path:     /burger/{id}
-    defaults: { _controller: ProjetBurgerBundle:Burger:index, id: 0 }
+    defaults: { _controller: ProjetBurgerBundle:Burger:index, id: 1 }
     requirements:
         id:   \d+
 projet_burger_catalog:
@@ -55,3 +57,26 @@ projet_burger_usercon:
 projet_burger_admincon:
     path:     /validateAdmin
     defaults: { _controller: ProjetBurgerBundle:Burger:admincon}
+projet_burger_cdisplay:
+    path:     /cartDisplay
+    defaults: { _controller: ProjetBurgerBundle:Burger:cdisplay}
+projet_burger_qmodify:
+    path:     /cartModify/{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:qmodify}
+    requirements:
+        id: \d+
+projet_burger_vnuser:
+    path:     /validateNewUser
+    defaults: { _controller: ProjetBurgerBundle:Burger:vnuser}
+projet_burger_cpassword:
+    path:     /changePassword
+    defaults: { _controller: ProjetBurgerBundle:Burger:cpassword}
+projet_burger_vcpassword:
+    path:     /validatePassword
+    defaults: { _controller: ProjetBurgerBundle:Burger:vcpassword}
+projet_burger_checkout:
+    path:     /checkout
+    defaults: { _controller: ProjetBurgerBundle:Burger:checkout}
+projet_burger_vcheck:
+    path:     /validateCheckout
+    defaults: { _controller: ProjetBurgerBundle:Burger:vcheck}

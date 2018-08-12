@@ -19,6 +19,7 @@ use Projet\BurgerBundle\Entity\State;
 use Projet\BurgerBundle\Entity\Take;
 use Projet\BurgerBundle\Entity\Type;
 use Projet\BurgerBundle\Entity\User;
+use Projet\BurgerBundle\Form\AccountType;
 use Projet\BurgerBundle\Form\ProductType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,52 +34,52 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BurgerController extends Controller
 {
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function indexAction($id)
+    public function initializeAction($id,Request $request)
     {
         $em=$this->getDoctrine()->getManager();
+
         /**
          * @var User $user
          */
-        $user=new User();
-        if($id==0)
-        {
-            $user->setIdUser($id);
-        }else{
-           $repu=$em->getRepository(User::class);
-           $user=$repu->find($id);
-        }
+        $repu=$em->getRepository(User::class);
+        $user=$repu->find($id);
 
-        $this->get('session')->set('user',$user);
+        $request->getSession()->set('user',$user);
+
+        $conte=array();
+        $request->getSession()->set('acontent',$conte);
+
+        $cart=new Cart();
+        $cart->setIdUser($user);
+        $em->persist($cart);
+        $em->flush();
+
+        $request->getSession()->set('cart',$cart->getIdCart());
+        $date=new \DateTime('now');
+        $request->getSession()->set('date', $date);
+
+        return $this->redirectToRoute('projet_burger_homepage');
+    }
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction($id,Request $request)
+    {
+        $cart=$request->getSession()->get('cart');
+        $em=$this->getDoctrine()->getManager();
+
+        /**
+         * @var User $user
+         */
+        $repu=$em->getRepository(User::class);
+        $user=$repu->find($id);
+
+        $request->getSession()->set('user',$user);
+
         $rep=$em->getRepository(Product::class);
         $list_product=$rep->findAll();
         $product=array();
         $i=0;
-        if(!$this->get('session')->has('acontent'))
-        {
-            $conte=array();
-            $this->get('session')->set('acontent',$conte);
-
-        }
-        if(!$this->get('session')->has('cart'))
-        {
-            /**
-             * @var Cart $cart
-             */
-            $cart=new Cart();
-            $cart->setIdUser($user);
-            $em->persist($cart);
-            $this->get('session')->set('cart',$cart);
-            $tab=array();
-            $this->get('session')->set('table',$tab);
-        }else{
-            /**
-             * @var Cart $cart
-             */
-            $cart=$this->get('session')->get('cart');
-        }
 
         /** @var Product $prod */
         foreach ($list_product as $prod)
@@ -97,16 +98,6 @@ class BurgerController extends Controller
 
     public function aindexAction()
     {
-        /*$em=$this->getDoctrine()->getManager();
-        $rep=$em->getRepository(Product::class);
-        $t=$em->getRepository(Test::class)->findAll();
-        $q=$t->
-        $s=$rep->findAll();
-
-
-
-
-        $list_product=$rep->findAll();*/
         return $this->render('ProjetBurgerBundle:Burger:aindex.html.twig');
     }
 
@@ -377,31 +368,32 @@ class BurgerController extends Controller
              * @var Product $prod
              */
             $prod=$rep->find($id);
+            $idc=$request->getSession()->get('cart');
+
+            $repca=$em->getRepository(Cart::class);
             /**
              * @var Cart $cart
              */
-            $cart=$this->get('session')->get('cart');
+            $ca=$repca->find($idc);
 
             $repc=$em->getRepository(Content::class);
             /**
              * @var Content $con
              */
-            $con=$repc->findOneBy(array('idProduct'=>$prod->getIdProduct(),'idCart'=>$cart->getIdCart()));
+            $con=$repc->findOneBy(array('idProduct'=>$prod->getIdProduct(),'idCart'=>$ca->getIdCart()));
             if($prod->getQuantity()>=$qted && $con==null)
             {
                 $con=new Content();
-                $con->setIdProduct($prod->getIdProduct());
+                $con->setIdProduct($prod);
                 $con->setQuantity($qted);
-                $con->setIdCart($cart);
+                $con->setIdCart($ca);
 
-                $acontent=$this->get('session')->get('acontent');
+                $acontent=$request->getSession()->get('acontent');
                 $acontent[] = $con;
-                $this->get('session')->set('acontent',$acontent);
+                $request->getSession()->set('acontent',$acontent);
 
                 $em->persist($con);
-                $em->flush();
                 $datas["notification"] = "Save as successfull !";
-
             }else{
                 if ($prod->getQuantity()<$qted)
                 {
@@ -410,6 +402,7 @@ class BurgerController extends Controller
                     $datas["notification"] = "The product is already in your cart !";
                 }
             }
+            $em->flush();
             return $this->render('ProjetBurgerBundle:Burger:try.html.twig',$datas);
         }
         return $this->render('ProjetBurgerBundle:Burger:try.html.twig');
@@ -452,23 +445,237 @@ class BurgerController extends Controller
              * @var Account $user
              */
             $user=$rep->findOneBy(array('login'=>$log,'password'=>$pass));
-            if($user != null)
+            if($user != null && $user->getState()->getIdState()==4)
             {
-                /**
-                 * @var Cart $cart
-                 */
                 $cart=$this->get('session')->get('cart');
-                $cart->setIdUser($user);
-                $em->persist($cart);
+                $repc=$em->getRepository(Cart::class);
+                /**
+                 * @var Cart $ca
+                 */
+                $ca=$repc->find($cart);
+                $ca->setIdUser($user->getIdUser());
+                $em->persist($ca);
                 $em->flush();
+
+                $request->getSession()->set('account',$user);
                 return $this->redirectToRoute('projet_burger_homepage',array('id'=>$user->getIdUser()->getIdUser()));
             }
-            return $this->render('ProjetBurgerBundle:Burger:index.html.twig');
+            return $this->redirectToRoute('projet_burger_homepage');
+        }
+        return $this->render('ProjetBurgerBundle:Burger:index.html.twig');
+    }
+
+    public function nuserAction(Request $request)
+    {
+        return $this->render('ProjetBurgerBundle:Burger:nuserform.html.twig');
+    }
+
+    public function cdisplayAction(Request $request)
+    {
+        $list_cont=$request->getSession()->get('acontent');
+        $list=array();
+        /**
+         * @var Content $con
+         */
+        foreach ($list_cont as $con)
+        {
+            $list[]=$con;
+        }
+
+        return $this->render('ProjetBurgerBundle:Burger:cdisplay.html.twig',array('content'=>$list));
+    }
+
+    public function qmodifyAction($id,Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $qty=$_POST['qty'];
+            $em=$this->getDoctrine()->getManager();
+            $rep=$em->getRepository(Product::class);
+            /**
+             * @var Product $prod
+             */
+            $prod=$rep->find($id);
+            if($prod->getQuantity()>=$qty)
+            {
+
+                $cart=$request->getSession()->get('cart');
+                $repco=$em->getRepository(Content::class);
+                $repc=$em->getRepository(Cart::class);
+                /**
+                 * @var Cart $c
+                 */
+                $c=$repc->find($cart);
+                $list=array();
+                $acontent=$request->getSession()->get('acontent');
+                /**
+                 * @var Content $con
+                 */
+                foreach ($acontent as $con)
+                {
+                    if($con->getIdCart()->getIdCart()==$c->getIdCart() && $con->getIdProduct()->getIdProduct()==$prod->getIdProduct())
+                    {
+                        /**
+                         * @var Content $co
+                         */
+                        $co=$repco->findOneBy(array('idProduct'=>$prod,'idCart'=>$cart));
+                        $co->setQuantity($qty);
+                        $em->persist($co);
+                        $con->setQuantity($qty);
+                    }
+                    $list[]=$con;
+                }
+                $request->getSession()->set('acontent',$list);
+                $em->flush();
+
+                $datas["notification"] = "Modify as successfull !";
+            }else{
+                    $datas["notification"] = "The quantity available is !".$prod->getQuantity()." which is lower than ".$qty;
+            }
+            return $this->redirectToRoute('projet_burger_cdisplay');
         }
     }
 
-    public function nuserAction()
+    public function vnuserAction(Request $request)
     {
-        return $this->render('ProjetBurgerBundle:Burger:aindex.html.twig');
+        if ($request->isMethod('POST'))
+        {
+            $name=$_POST['name'];
+            $surname=$_POST['surname'];
+            $email=$_POST['email'];
+            $address=$_POST['address'];
+            $number=$_POST['number'];
+            $login=$_POST['login'];
+            $pass=$_POST['password'];
+
+            $user=new User();
+            $user->setName($name);
+            $user->setPhone($number);
+            $user->setSurname($surname);
+            $user->setAddress($address);
+            $user->setEmail($email);
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $acc=new Account();
+            $acc->setLogin($login);
+            $acc->setPassword($pass);
+            $acc->setIdUser($user);
+
+            $rep=$em->getRepository(State::class);
+            /**
+             * @var State $s
+             */
+            $s=$rep->findOneBy(array('state'=>'ok'));
+
+            $acc->setState($s);
+            $em->persist($acc);
+            $em->flush();
+
+            return $this->redirectToRoute('projet_burger_homepage',array('id'=>$user->getIdUser()));
+        }
+
+        return $this->render('ProjetBurgerBundle:Burger:index.html.twig');
+    }
+
+    public function cpasswordAction()
+    {
+        return $this->render('ProjetBurgerBundle:Burger:cpassword.html.twig');
+    }
+
+    public function vcpasswordAction(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $ap=$_POST['ppassword'];
+            $pass=$_POST['password'];
+            /**
+             * @var User $user
+             */
+            $user=$request->getSession()->get('user');
+
+            $em=$this->getDoctrine()->getManager();
+            $repa=$em->getRepository(Account::class);
+
+            /**
+             * @var Account $acc
+             */
+            $acc=$request->getSession()->get('account');
+
+            if($acc->getPassword()==$ap)
+            {
+                $acc->setPassword($pass);
+                $request->getSession()->set('account',$acc);
+
+                /**
+                 * @var Account $a
+                 */
+                $a=$repa->find($acc->getLogin());
+                $a->setPassword($pass);
+                $em->flush();
+                $datas["notification"]="Save as successful";
+            }else{
+                $datas["notification"]="The old password is wrong";
+            }
+            return $this->render('ProjetBurgerBundle:Burger:cpassword.html.twig',$datas);
+        }
+        return $this->render('ProjetBurgerBundle:Burger:cpassword.html.twig');
+    }
+
+    public function checkoutAction(Request $request)
+    {
+        $list_cont=$request->getSession()->get('acontent');
+        $list=array();
+        /**
+         * @var Content $con
+         */
+        foreach ($list_cont as $con)
+        {
+            $list[]=$con;
+        }
+
+        return $this->render('ProjetBurgerBundle:Burger:checkdisplay.html.twig',array('content'=>$list));
+    }
+
+    public function vcheckAction(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $list_cont=$request->getSession()->get('acontent');
+            /**
+             * @var User $user
+             */
+            $user=$request->getSession()->get('user');
+            $list=array();
+            $em=$this->getDoctrine()->getManager();
+            $rep=$em->getRepository(Product::class);
+            $repc=$em->getRepository(Content::class);
+            /**
+             * @var Content $con
+             */
+            foreach ($list_cont as $con)
+            {
+                $c=$repc->findOneBy(array('idProduct'=>$con->getIdProduct(),'idCart'=>$con->getIdCart()));
+                /**
+                 * @var Product $prod
+                 */
+                $prod=$rep->find($c->getIdProduct()->getIdProduct());
+                $nq=$prod->getQuantity()-$c->getQuantity();
+                $prod->setQuantity($nq);
+                $em->persist($prod);
+            }
+            $request->getSession()->set('acontent',$list);
+            $cart=new Cart();
+            $cart->setIdUser($user);
+            $em->persist($cart);
+            $em->flush();
+
+            $request->getSession()->set('cart',$cart->getIdCart());
+            $datas["notification"]="Checkout successful please reload the page";
+        }
+        $datas["notification"]="Checkout Impossible";
+        return $this->render('ProhetBurgerBundle:Burger:try.html.twig');
     }
 }
