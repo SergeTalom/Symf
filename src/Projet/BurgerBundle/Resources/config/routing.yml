@@ -80,3 +80,6 @@ projet_burger_checkout:
 projet_burger_vcheck:
     path:     /validateCheckout
     defaults: { _controller: ProjetBurgerBundle:Burger:vcheck}
+projet_burger_cremove:
+    path:     /removeProduct/{id}/{cart}
+    defaults: { _controller: ProjetBurgerBundle:Burger:cremove}

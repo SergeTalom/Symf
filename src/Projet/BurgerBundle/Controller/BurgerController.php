@@ -11,6 +11,7 @@ namespace Projet\BurgerBundle\Controller;
 use Projet\BurgerBundle\Entity\Account;
 use Projet\BurgerBundle\Entity\Admin;
 use Projet\BurgerBundle\Entity\Cart;
+use Projet\BurgerBundle\Entity\Checkout;
 use Projet\BurgerBundle\Entity\Content;
 use Projet\BurgerBundle\Entity\Goodburger;
 use Projet\BurgerBundle\Entity\Files;
@@ -31,6 +32,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Dompdf\Options;
+use Dompdf\Dompdf;
 
 class BurgerController extends Controller
 {
@@ -381,28 +385,33 @@ class BurgerController extends Controller
              * @var Content $con
              */
             $con=$repc->findOneBy(array('idProduct'=>$prod->getIdProduct(),'idCart'=>$ca->getIdCart()));
-            if($prod->getQuantity()>=$qted && $con==null)
+            if($qted>0)
             {
-                $con=new Content();
-                $con->setIdProduct($prod);
-                $con->setQuantity($qted);
-                $con->setIdCart($ca);
-
-                $acontent=$request->getSession()->get('acontent');
-                $acontent[] = $con;
-                $request->getSession()->set('acontent',$acontent);
-
-                $em->persist($con);
-                $datas["notification"] = "Save as successfull !";
-            }else{
-                if ($prod->getQuantity()<$qted)
+                if($prod->getQuantity()>=$qted && $con==null)
                 {
-                    $datas["notification"] = "The quantity available is !".$prod->getQuantity()." which is lower than ".$qted;
+                    $con=new Content();
+                    $con->setIdProduct($prod);
+                    $con->setQuantity($qted);
+                    $con->setIdCart($ca);
+
+                    $acontent=$request->getSession()->get('acontent');
+                    $acontent[] = $con;
+                    $request->getSession()->set('acontent',$acontent);
+
+                    $em->persist($con);
+                    $datas["notification"] = "Save as successfull !";
                 }else{
-                    $datas["notification"] = "The product is already in your cart !";
+                    if ($prod->getQuantity()<$qted)
+                    {
+                        $datas["notification"] = "The quantity available is !".$prod->getQuantity()." which is lower than ".$qted;
+                    }else{
+                        $datas["notification"] = "The product is already in your cart !";
+                    }
                 }
+                $em->flush();
+            }else{
+                $datas["notification"]="Please enter a valid quantity";
             }
-            $em->flush();
             return $this->render('ProjetBurgerBundle:Burger:try.html.twig',$datas);
         }
         return $this->render('ProjetBurgerBundle:Burger:try.html.twig');
@@ -496,41 +505,42 @@ class BurgerController extends Controller
              * @var Product $prod
              */
             $prod=$rep->find($id);
-            if($prod->getQuantity()>=$qty)
-            {
+            if ($qty>0) {
+                if ($prod->getQuantity() >= $qty) {
 
-                $cart=$request->getSession()->get('cart');
-                $repco=$em->getRepository(Content::class);
-                $repc=$em->getRepository(Cart::class);
-                /**
-                 * @var Cart $c
-                 */
-                $c=$repc->find($cart);
-                $list=array();
-                $acontent=$request->getSession()->get('acontent');
-                /**
-                 * @var Content $con
-                 */
-                foreach ($acontent as $con)
-                {
-                    if($con->getIdCart()->getIdCart()==$c->getIdCart() && $con->getIdProduct()->getIdProduct()==$prod->getIdProduct())
-                    {
-                        /**
-                         * @var Content $co
-                         */
-                        $co=$repco->findOneBy(array('idProduct'=>$prod,'idCart'=>$cart));
-                        $co->setQuantity($qty);
-                        $em->persist($co);
-                        $con->setQuantity($qty);
+                    $cart = $request->getSession()->get('cart');
+                    $repco = $em->getRepository(Content::class);
+                    $repc = $em->getRepository(Cart::class);
+                    /**
+                     * @var Cart $c
+                     */
+                    $c = $repc->find($cart);
+                    $list = array();
+                    $acontent = $request->getSession()->get('acontent');
+                    /**
+                     * @var Content $con
+                     */
+                    foreach ($acontent as $con) {
+                        if ($con->getIdCart()->getIdCart() == $c->getIdCart() && $con->getIdProduct()->getIdProduct() == $prod->getIdProduct()) {
+                            /**
+                             * @var Content $co
+                             */
+                            $co = $repco->findOneBy(array('idProduct' => $prod, 'idCart' => $cart));
+                            $co->setQuantity($qty);
+                            $em->persist($co);
+                            $con->setQuantity($qty);
+                        }
+                        $list[] = $con;
                     }
-                    $list[]=$con;
-                }
-                $request->getSession()->set('acontent',$list);
-                $em->flush();
+                    $request->getSession()->set('acontent', $list);
+                    $em->flush();
 
-                $datas["notification"] = "Modify as successfull !";
+                    $datas["notification"] = "Modify as successfull !";
+                } else {
+                    $datas["notification"] = "The quantity available is !" . $prod->getQuantity() . " which is lower than " . $qty;
+                }
             }else{
-                    $datas["notification"] = "The quantity available is !".$prod->getQuantity()." which is lower than ".$qty;
+                $datas["notification"]="Please enter a valid quantity";
             }
             return $this->redirectToRoute('projet_burger_cdisplay');
         }
@@ -639,24 +649,47 @@ class BurgerController extends Controller
         return $this->render('ProjetBurgerBundle:Burger:checkdisplay.html.twig',array('content'=>$list));
     }
 
+    public function test(User $user,Request $request)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $cart=new Cart();
+        $cart->setIdUser($user);
+        $request->getSession()->set('cart',$cart->getIdCart());
+        $em->persist($cart);
+        $em->flush();
+    }
+
     public function vcheckAction(Request $request)
     {
         if($request->isMethod('POST'))
         {
             $list_cont=$request->getSession()->get('acontent');
+            $listt=array();
             /**
-             * @var User $user
+             * @var User $us
              */
-            $user=$request->getSession()->get('user');
+            $us=$request->getSession()->get('user');
+            $cart=$request->getSession()->get('cart');
             $list=array();
             $em=$this->getDoctrine()->getManager();
             $rep=$em->getRepository(Product::class);
+            $repu=$em->getRepository(User::class);
             $repc=$em->getRepository(Content::class);
+            $repca=$em->getRepository(Cart::class);
+            /**
+             * @var Cart $ca
+             */
+            $ca=$repca->find($cart);
+            /**
+             * @var User $user
+             */
+            $user=$repu->find($us->getIdUser());
             /**
              * @var Content $con
              */
             foreach ($list_cont as $con)
             {
+                $listt[]=$con;
                 $c=$repc->findOneBy(array('idProduct'=>$con->getIdProduct(),'idCart'=>$con->getIdCart()));
                 /**
                  * @var Product $prod
@@ -664,18 +697,88 @@ class BurgerController extends Controller
                 $prod=$rep->find($c->getIdProduct()->getIdProduct());
                 $nq=$prod->getQuantity()-$c->getQuantity();
                 $prod->setQuantity($nq);
-                $em->persist($prod);
-            }
-            $request->getSession()->set('acontent',$list);
-            $cart=new Cart();
-            $cart->setIdUser($user);
-            $em->persist($cart);
-            $em->flush();
+                if($nq==0)
+                {
+                    $reps=$em->getRepository(State::class);
+                    /**
+                     * @var State $state
+                     */
+                    $state=$reps->findOneBy(array('state'=>'not available'));
+                    $prod->setState($state);
+                }
 
-            $request->getSession()->set('cart',$cart->getIdCart());
-            $datas["notification"]="Checkout successful please reload the page";
+                $em->persist($prod);
+                $em->flush();
+            }
+            $total=$_POST['total'];
+
+            $ch=new Checkout();
+            $ch->setIdUser($user);
+            $ch->setIdCart($ca->getIdCart());
+            $ch->setTotalPrice($total);
+            $ch->setDateOut(new \DateTime());
+            $em->persist($ch);
+            $em->flush();
+            $request->getSession()->set('user',$user);
+
+
+            $request->getSession()->set('acontent',$list);
+            $this->test($user,$request);
+            $options = new Options();
+            $options->set('isRemoteEnabled', TRUE);
+            $dompdf = new Dompdf($options);
+            $html = $this->renderView('ProjetBurgerBundle:Burger:receipt.html.twig',array('content'=>$listt));
+            $dompdf->loadHtml($html);
+            $dompdf->render();
+
+
+            return new Response($dompdf->stream());
         }
         $datas["notification"]="Checkout Impossible";
-        return $this->render('ProhetBurgerBundle:Burger:try.html.twig');
+        return $this->render('ProjetBurgerBundle:Burger:try.html.twig');
     }
+
+    public function cremoveAction($id,$cart,Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $em=$this->getDoctrine()->getManager();
+            $rep=$em->getRepository(Product::class);
+            /**
+             * @var Product $prod
+             */
+            $prod=$rep->find($id);
+
+            $repco = $em->getRepository(Content::class);
+            $repc = $em->getRepository(Cart::class);
+            /**
+             * @var Cart $c
+             */
+            $c = $repc->find($cart);
+            $list = array();
+            $acontent = $request->getSession()->get('acontent');
+
+            /**
+             * @var Content $con
+             */
+            foreach ($acontent as $con) {
+                if ($con->getIdCart()->getIdCart() == $c->getIdCart() && $con->getIdProduct()->getIdProduct() == $prod->getIdProduct()) {
+                    /**
+                     * @var Content $co
+                     */
+                    $co = $repco->findOneBy(array('idProduct' => $prod, 'idCart' => $cart));
+                    $em->remove($co);
+                }else{
+                    $list[] = $con;
+                }
+            }
+            $request->getSession()->set('acontent', $list);
+            $em->flush();
+
+            $datas["notification"] = "Remove as successfull !";
+
+            return $this->redirectToRoute('projet_burger_cdisplay');
+        }
+    }
+
 }

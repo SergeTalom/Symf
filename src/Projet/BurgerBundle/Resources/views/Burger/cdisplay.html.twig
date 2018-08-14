@@ -12,7 +12,7 @@
             <th>Unit Price</th>
             <th>Quantity asked</th>
             <th>Total</th>
-            <th>Change the Quantity</th>
+            <th>Change the Quantity|Remove in the Cart</th>
         </tr>
         {% set t=0 %}
         {% for con in content %}
@@ -22,11 +22,17 @@
                 <td>{{ con.getQuantity() }}</td>
                 {% set s=con.getQuantity()*con.getIdProduct().getPrice() %}
                 <td> {{ s }}£</td>
-                <td>
+                <td align="center">
+                    <div class="row align-items-center" >
+                        &nbsp;&nbsp;&nbsp;
                     <form class="form-inline my-2 my-lg-0" method="post" action="{{ path('projet_burger_qmodify', {'id':con.getIdProduct().getIdProduct()}) }}">
                         <input class="form-control mr-sm-2" type="number" placeholder="new Quantity" name="qty">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Modify</button>
                     </form>
+                    <form class="form-inline my-2 my-lg-0" method="post" action="{{ path('projet_burger_cremove', {'id':con.getIdProduct().getIdProduct(),'cart':con.getIdCart().getIdCart()}) }}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Remove</button>
+                    </form>
+                    </div>
                 </td>
             </tr>
             {% set t=t+s %}
