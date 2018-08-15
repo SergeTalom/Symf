@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <style>
+                thead {
+                    display: table-header-group;
+                }
+                tr,
+                img {
+                    page-break-inside: avoid;
+                }
+                .table {
+                    border-collapse: collapse !important;
+                }
+                .table td,
+                .table th {
+                    background-color: #fff !important;
+                }
+                .table-bordered th,
+                .table-bordered td {
+                    border: 1px solid #ddd !important;
+                }
+        </style>
+    </head>
+    <body>
+        <br>
+        <h1>GoodBurger Restaurant</h1><br>
+        <hr>
+        <table class="table" border="1">
+            <tr>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Quantity asked</th>
+                <th>Total</th>
+            </tr>
+            {% set t=0 %}
+            {% for con in content %}
+                <tr>
+                    <td>{{ con.getIdProduct().getName() }}</td>
+                    <td>{{ con.getIdProduct().getPrice() }}£</td>
+                    <td>{{ con.getQuantity() }}</td>
+                    {% set s=con.getQuantity()*con.getIdProduct().getPrice() %}
+                    <td> {{ s }}£</td>
+                </tr>
+                {% set t=t+s %}
+            {% endfor %}
+            <tr>
+                <td colspan="3" align="center">Total</td>
+                <td>{{ t }}£</td>
+            </tr>
+        </table>
+    </body>
+</html>

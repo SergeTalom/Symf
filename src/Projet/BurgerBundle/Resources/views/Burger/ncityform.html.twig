@@ -1,0 +1,25 @@
+{% extends "ProjetBurgerBundle::alayout.html.twig" %}
+{% block title %}
+    Add Product-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <h2>Add a new City for GoodBurger Restaurant</h2>
+    <hr>
+    <br>
+    {% if notification is defined %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Notification !</strong>   {{ notification }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="well">
+        {{ form_start(form, {'method': 'POST', enctype:"multipart/form-data" }) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    {% block javasrcipts %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

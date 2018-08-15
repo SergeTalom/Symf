@@ -1,0 +1,34 @@
+{% extends "ProjetBurgerBundle::alayout.html.twig" %}
+{% block title %}
+    Edit Product-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <h2>Edit Product</h2>
+    <hr>
+    {% if notification is defined %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Notification !</strong>   {{ notification }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% else %}
+        <p>Select the product that you want to modify</p>
+        <br>
+        <form action="{{ path('projet_burger_veproduct') }}" method="post">
+            <div class="form-group">
+                <label for="ep">Select the product to modify</label>
+                <select class="form-control" id="ep" name="ep">
+                    {% for prod in product %}
+                        <option>{{ prod.getName() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Modify It</button>
+        </form>
+    {% endif %}
+    {% block javasrcipts %}
+        {{ parent() }}
+    {% endblock %}
+
+{% endblock %}

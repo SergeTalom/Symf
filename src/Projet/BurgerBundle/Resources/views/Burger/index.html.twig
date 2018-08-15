@@ -6,28 +6,40 @@
     <br>
     <h1>Welcome to The GoodBurger restaurant</h1><br>
     <hr>
-    {% set k=0 %}
-    {% set m=0 %}
-    <div id="te">
-    {% for i in 1..line %}
-        <div class="row align-items-center prod" >
-            {% for j in 0..2 %}
-              <div class=" col-12 col-sm-6 col-md-4">
-                  <div class="card">
-                      <div class="card-header text-center">
-                          <a href="{{ path('projet_burger_pdescription', {'id':product[k].getIdProduct()}) }}">
-                              <img style="height:200px; max-height: 200px; max-width: 100%;"  src="{{ asset(product[k].getImageUrl()) }}" alt="{{ product[k].getDescription() }}" class="img-responsive center-block">
-                          </a>
-                      </div>
-                      <div class="card-body text-center">
-                          <a href="#" class="btn btn-success btn-sm mr-5">Add to your cart</a>
-                          <a class="btn btn-primary btn-sm " href="{{ path('projet_burger_pdescription', {'id':product[m].getIdProduct()}) }}">Detail</a>
-                      </div>
-                  </div>
-              </div>
-                {% set k =k+1 %}
-            {% endfor %}
-        </div>
-    {% endfor %}
+    <div class="well" id="tester">
+        {% if notification is defined %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Notification !</strong>   {{ notification }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
     </div>
+    {% include "ProjetBurgerBundle:Burger:pdisplay.html.twig" %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript">
+            function test(y){
+                bootbox.prompt({
+                    title: "Enter the quantity",
+                    inputType: 'number',
+                    callback: function (result) {
+                        $.ajax({
+                            url: "{{ (path('projet_burger_valide')) }}",
+                            type: "POST",
+                            data: {"id": y, "qted": result}
+                        })
+                            .done(function (msg) {
+                                alert("ok");
+                                $('#tester').html(msg);
+                            })
+                            .fail(function () {
+                                alert("Echec");
+                            });
+                    }
+                });
+            }
+        </script>
+    {% endblock %}
 {% endblock %}

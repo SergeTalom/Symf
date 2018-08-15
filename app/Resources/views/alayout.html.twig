@@ -3,6 +3,7 @@
     <title>{% block title %} Burger {% endblock %}</title>
     {% block stylesheet %}
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('js/bootstrap-dropdown.js') }}" media="screen">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/essai.css') }}">
     {% endblock %}
 </head>
@@ -40,7 +41,7 @@
     </div>
     <div class="row col-md-12" id="menu">
         <nav class="collapse navbar navbar-collapse navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ path('projet_burger_nproductform') }}"><span class="glyphicon glyphicon-home"></span>GoodBurger</a>
+            <a class="navbar-brand" href="{{ path('projet_burger_ahomepage') }}"><span class="glyphicon glyphicon-home"></span>GoodBurger</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -53,19 +54,16 @@
                         <span class="caret"></span>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <a class="dropdown-item" href="{{ path('projet_burger_nproductform') }}">Add a new product</a>
-                            <a class="dropdown-item" href="#">Edit product</a>
-                            <a class="dropdown-item" href="#">Delete product</a>
-                            <a class="dropdown-item" href="#">Change city of a product</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('projet_burger_eproduct') }}">Edit product</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('projet_burger_dproduct') }}">Delete product</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage Account
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('projet_burger_buaccount') }}">
+                            Block|Unlock an Account
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="#">Block an Account</a>
-                            <a class="dropdown-item" href="#">Unlock an Account</a>
-                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,11 +71,15 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                             <a class="dropdown-item" href="#">Add an Administrator</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Remove an Administrator</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add a new city</a>
+                        <a class="nav-link" href="{{ path('projet_burger_ncityform') }}">Add a new city</a>
+                    </li>
+                    <li class="nav-item">
+                        <a  href="{{ path('projet_burger_start') }}" class="nav-link btn btn-outline-primary" id="buttonLogin" > Log out</a>
                     </li>
                 </ul>
             </div>
@@ -93,11 +95,9 @@
     </footer>
 </div>
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-dropdown.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-popover.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}
 
 </body>

@@ -1,9 +1,13 @@
 projet_burger_start:
-    path:     /
-    defaults: { _controller: ProjetBurgerBundle:Burger:index }
+    path:     /{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:initialize, id: 1 }
+    requirements:
+        id:   \d+
 projet_burger_homepage:
-    path:     /burger
-    defaults: { _controller: ProjetBurgerBundle:Burger:index }
+    path:     /burger/{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:index, id: 1 }
+    requirements:
+        id:   \d+
 projet_burger_catalog:
     path:     /catalog
     defaults: { _controller: ProjetBurgerBundle:Burger:catalog}
@@ -11,10 +15,71 @@ projet_burger_ahomepage:
     path:     /aburger
     defaults: { _controller: ProjetBurgerBundle:Burger:aindex}
 projet_burger_nproductform:
-    path:     /newProduct
-    defaults: { _controller: ProjetBurgerBundle:Burger:nproductform}
+    path:     /newProduct/{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:nproductform, id: 0}
+    requirements:
+        id:   \d+
 projet_burger_pdescription:
     path:     /description/{id}
     defaults: { _controller: ProjetBurgerBundle:Burger:pdescription}
     requirements:
         id:   \d+
+projet_burger_ncityform:
+    path:     /newCity
+    defaults: { _controller: ProjetBurgerBundle:Burger:ncityform}
+projet_burger_dproduct:
+    path:     /deleteProduct
+    defaults: { _controller: ProjetBurgerBundle:Burger:dproduct}
+projet_burger_vdproduct:
+    path: /validateDeleting
+    defaults: { _controller: ProjetBurgerBundle:Burger:vdproduct}
+projet_burger_buaccount:
+    path:     /blockAccount
+    defaults: { _controller: ProjetBurgerBundle:Burger:buaccount}
+projet_burger_vbuaccount:
+    path:     /validateAccountOperation
+    defaults: { _controller: ProjetBurgerBundle:Burger:vbuaccount}
+projet_burger_eproduct:
+    path:     /editProduct
+    defaults: { _controller: ProjetBurgerBundle:Burger:eproduct}
+projet_burger_veproduct:
+    path:     /validateEditing
+    defaults: {_controller: ProjetBurgerBundle:Burger:veproduct}
+projet_burger_valide:
+    path:     /valide
+    defaults: { _controller: ProjetBurgerBundle:Burger:valide}
+projet_burger_nuserform:
+    path:     /newUser
+    defaults: { _controller: ProjetBurgerBundle:Burger:nuser}
+projet_burger_usercon:
+    path:     /validateUser
+    defaults: { _controller: ProjetBurgerBundle:Burger:usercon}
+projet_burger_admincon:
+    path:     /validateAdmin
+    defaults: { _controller: ProjetBurgerBundle:Burger:admincon}
+projet_burger_cdisplay:
+    path:     /cartDisplay
+    defaults: { _controller: ProjetBurgerBundle:Burger:cdisplay}
+projet_burger_qmodify:
+    path:     /cartModify/{id}
+    defaults: { _controller: ProjetBurgerBundle:Burger:qmodify}
+    requirements:
+        id: \d+
+projet_burger_vnuser:
+    path:     /validateNewUser
+    defaults: { _controller: ProjetBurgerBundle:Burger:vnuser}
+projet_burger_cpassword:
+    path:     /changePassword
+    defaults: { _controller: ProjetBurgerBundle:Burger:cpassword}
+projet_burger_vcpassword:
+    path:     /validatePassword
+    defaults: { _controller: ProjetBurgerBundle:Burger:vcpassword}
+projet_burger_checkout:
+    path:     /checkout
+    defaults: { _controller: ProjetBurgerBundle:Burger:checkout}
+projet_burger_vcheck:
+    path:     /validateCheckout
+    defaults: { _controller: ProjetBurgerBundle:Burger:vcheck}
+projet_burger_cremove:
+    path:     /removeProduct/{id}/{cart}
+    defaults: { _controller: ProjetBurgerBundle:Burger:cremove}

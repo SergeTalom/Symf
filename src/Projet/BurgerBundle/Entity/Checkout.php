@@ -36,7 +36,7 @@ class Checkout
     private $totalPrice;
 
     /**
-     * @var \User
+     * @var \Projet\BurgerBundle\Entity\User
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
@@ -80,7 +80,7 @@ class Checkout
     }
 
     /**
-     * @param \User $idUser
+     * @param \Projet\BurgerBundle\Entity\User $idUser
      */
     public function setIdUser($idUser)
     {
@@ -88,7 +88,7 @@ class Checkout
     }
 
     /**
-     * @return \User
+     * @return \Projet\BurgerBundle\Entity\User
      */
     public function getIdUser()
     {

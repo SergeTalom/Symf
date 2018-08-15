@@ -1,0 +1,45 @@
+{% extends "ProjetBurgerBundle::layout.html.twig" %}
+{% block title %}
+    Homepage-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <br>
+    <div class="well" id="te">
+
+    </div>
+    <div id="t">
+        <h1>GoodBurger Restaurant</h1><br>
+        <hr>
+        <table class="table" border="1">
+            <tr>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Quantity asked</th>
+                <th>Total</th>
+            </tr>
+            {% set t=0 %}
+            {% for con in content %}
+                <tr>
+                    <td>{{ con.getIdProduct().getName() }}</td>
+                    <td>{{ con.getIdProduct().getPrice() }}£</td>
+                    <td>{{ con.getQuantity() }}</td>
+                    {% set s=con.getQuantity()*con.getIdProduct().getPrice() %}
+                    <td> {{ s }}£</td>
+                </tr>
+                {% set t=t+s %}
+            {% endfor %}
+            <tr>
+                <td colspan="3" align="center">Total</td>
+                <td>{{ t }}£</td>
+            </tr>
+        </table>
+    </div>
+    <div class="well" id="tes"></div>
+    <form action="{{ path('projet_burger_vcheck') }}" method="post">
+        <input type="number" value="{{ t }}" name="total" hidden>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="reset" class="btn btn-primary">Cancel</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary">Everything ok,checkout</button>
+    </form>
+{% endblock %}

@@ -24,6 +24,13 @@ class Goodburger
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=254, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="location", type="string", length=254, nullable=false)
      */
     private $location;
@@ -45,6 +52,14 @@ class Goodburger
     }
 
     /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * @param int $idGb
      */
     public function setIdGb($idGb)
@@ -58,6 +73,14 @@ class Goodburger
     public function setLocation($location)
     {
         $this->location = $location;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->location = $name;
     }
 
 

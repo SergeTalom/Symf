@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Cart
  *
  * @ORM\Table(name="cart", indexes={@ORM\Index(name="FK_have", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Projet\BurgerBundle\Repository\CartRepository")
  */
 class Cart
 {
@@ -22,7 +22,6 @@ class Cart
     private $idCart;
 
     /**
-     * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({

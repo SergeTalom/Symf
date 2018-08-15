@@ -302,4 +302,33 @@ class Product
         return  $this->file;
     }
 
+    /**
+     * @var \Projet\BurgerBundle\Entity\Goodburger $location
+     */
+    private $location;
+
+    /**
+     * Set location
+     *
+     * @param \Projet\BurgerBundle\Entity\Goodburger $location
+     *
+     * @return Product
+     */
+    public function setLocation(\Projet\BurgerBundle\Entity\Goodburger $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \Projet\BurgerBundle\Entity\Goodburger
+     */
+    public function getlocation()
+    {
+        return $this->location;
+    }
+
 }

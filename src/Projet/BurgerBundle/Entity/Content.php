@@ -8,16 +8,18 @@ use Doctrine\ORM\Mapping as ORM;
  * Content
  *
  * @ORM\Table(name="content", indexes={@ORM\Index(name="FK_content", columns={"id_cart"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Projet\BurgerBundle\Repository\ContentRepository")
  */
 class Content
 {
     /**
-     * @var integer
      *
-     * @ORM\Column(name="id_product", type="integer", nullable=false)
      * @ORM\Id
+     * @ORM\OneToOne(targetEntity="Product")
      * @ORM\GeneratedValue(strategy="NONE")
+     *  @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_product", referencedColumnName="id_product")
+     * })
      */
     private $idProduct;
 
@@ -29,9 +31,8 @@ class Content
     private $quantity;
 
     /**
-     * @var \Cart
+     *  @ORM\Id
      *
-     * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Cart")
      * @ORM\JoinColumns({
@@ -61,11 +62,11 @@ class Content
     /**
      * Set idProduct
      *
-     * @param integer $idProduct
+     * @param \Projet\BurgerBundle\Entity\Product $idProduct
      *
      * @return Content
      */
-    public function setIdProduct($idProduct)
+    public function setIdProduct(\Projet\BurgerBundle\Entity\Product $idProduct)
     {
         $this->idProduct = $idProduct;
 
@@ -75,7 +76,7 @@ class Content
     /**
      * Get idProduct
      *
-     * @return integer
+     * @return \Projet\BurgerBundle\Entity\Product
      */
     public function getIdProduct()
     {

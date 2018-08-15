@@ -1,0 +1,36 @@
+{% extends "ProjetBurgerBundle::layout.html.twig" %}
+{% block title %}
+    Catalog-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <br>
+    <h1>Our catalog</h1><br>
+    <hr>
+    <h2>In our Good Burger we have different product as shown below</h2>
+    {% include "ProjetBurgerBundle:Burger:pdisplay.html.twig" %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript">
+            function test(y){
+                bootbox.prompt({
+                    title: "Enter the quantity",
+                    inputType: 'number',
+                    callback: function (result) {
+                        $.ajax({
+                            url: "{{ (path('projet_burger_valide')) }}",
+                            type: "POST",
+                            data: {"id": y, "qted": result}
+                        })
+                            .done(function (msg) {
+                                alert("ok");
+                                $('#tester').html(msg);
+                            })
+                            .fail(function () {
+                                alert("Echec");
+                            });
+                    }
+                });
+            }
+        </script>
+    {% endblock %}
+{% endblock %}

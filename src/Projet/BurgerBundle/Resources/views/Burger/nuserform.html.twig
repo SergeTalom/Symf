@@ -1,0 +1,50 @@
+{% extends "ProjetBurgerBundle::layout.html.twig" %}
+{% block title %}
+    Add User-{{ parent() }}
+{% endblock %}
+{% block goodburger_body %}
+    <h3>Formulaire de Compte</h3>
+    <form action="{{ path('projet_burger_vnuser') }}" method="post">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <div class="form-group">
+                <label for="surname">Surname *</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="surname" placeholder="Enter your surname" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address *</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="address">Address *</label>
+                <input type="text" class="form-control" name="address" placeholder="Your Address" required>
+            </div>
+            <div class="form-group">
+                <label for="number">Phone number</label>
+                <input type="text" class="form-control" name="number" placeholder="Your phone number">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend> About Your Account</legend>
+            <div class="form-group">
+                <label for="login">Login *</label>
+                <input type="text" class="form-control" name="login" placeholder="Your login" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password *</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+        </fieldset>
+        <button type="reset" class="btn btn-primary">Cancel</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% block javasrcipts %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}
